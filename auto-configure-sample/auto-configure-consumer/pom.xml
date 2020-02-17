@@ -11,5 +11,17 @@
 
     <artifactId>auto-configure-consumer</artifactId>
 
+    <properties>
+        <rpc.api.version>1.0-SNAPSHOT</rpc.api.version>
+    </properties>
+
+    <dependencies>
+        <!-- rpc api dependency -->
+        <dependency>
+            <groupId>com.gtw.dubbo</groupId>
+            <artifactId>rpc-api</artifactId>
+            <version>${rpc.api.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
