@@ -149,7 +149,7 @@ TODO：
    @Slf4j
    public class ConsumerApplication {
    
-       @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:12345")
+       @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:20880")
        private DemoService demoService;
    
        public static void main(String[] args) {
