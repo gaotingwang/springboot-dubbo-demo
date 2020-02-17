@@ -84,11 +84,6 @@
             <version>2.7.5</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
-
         <!--tool-->
         <dependency>
             <groupId>org.projectlombok</groupId>
