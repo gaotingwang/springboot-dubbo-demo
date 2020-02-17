@@ -140,7 +140,7 @@ TODO：
 
    
 
-###[服务消费方](https://github.com/gaotingwang/springboot-dubbo-demo/tree/master/auto-configure-sample/auto-configure-consumer)
+### [服务消费方](https://github.com/gaotingwang/springboot-dubbo-demo/tree/master/auto-configure-sample/auto-configure-consumer)
 
 1. 通过 `@Reference` 注入 RPC 接口 :
 
