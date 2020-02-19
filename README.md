@@ -4,7 +4,7 @@ TODO：
 
 - [x] 自动装配
 - [x] 外部化配置
-- [ ] Zookeeper 注册中心
+- [x] Zookeeper 注册中心
 - [ ] 健康检查
 - [ ] 服务监控
 
@@ -232,6 +232,64 @@ dubbo.protocols.hessian.port=8089
 public class DubboConfiguration {
 
 }
+```
+
+
+
+## Zookeeper 注册中心
+
+流程说明：
+
+- 服务提供者启动时: 向 `/dubbo/com.foo.DemoService/providers` 目录下写入自己的 URL 地址
+- 服务消费者启动时: 订阅 `/dubbo/com.foo.DemoService/providers` 目录下的提供者 URL 地址。并向 `/dubbo/com.foo.DemoService/consumers` 目录下写入自己的 URL 地址
+- 监控中心启动时: 订阅 `/dubbo/com.foo.DemoService` 目录下的所有提供者和消费者 URL 地址。
+
+支持以下功能：
+
+- 当提供者出现断电等异常停机时，注册中心能自动删除提供者信息
+- 当注册中心重启时，能自动恢复注册数据，以及订阅请求
+- 当会话过期时，能自动恢复注册数据，以及订阅请求
+- 当设置 `<dubbo:registry check="false" />` 时，记录失败注册和订阅请求，后台定时重试
+- 可通过 `<dubbo:registry username="admin" password="1234" />` 设置 zookeeper 登录信息
+- 可通过 `<dubbo:registry group="dubbo" />` 设置 zookeeper 的根节点，不配置将使用默认的根节点。
+- 支持 `*` 号通配符 `<dubbo:reference group="*" version="*" />`，可订阅服务的所有分组和所有版本的提供者
+
+
+
+### 使用
+
+在 provider 和 consumer 中增加 zookeeper 包依赖：
+
+```xml
+<!-- Zookeeper dependencies -->
+<dependency>
+    <groupId>org.apache.dubbo</groupId>
+    <artifactId>dubbo-dependencies-zookeeper</artifactId>
+    <version>${dubbo.version}</version>
+    <type>pom</type>
+    <exclusions>
+        <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+```
+
+修改provider的服务注册地址：
+
+```properties
+embedded.zookeeper.port = 2181
+dubbo.registry.address=zookeeper://127.0.0.1:${embedded.zookeeper.port}
+dubbo.registry.file = ${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
+```
+
+修改consumer的接口获取地址，`@Reference`中可以不再指定接口获取的URL：
+
+```properties
+embedded.zookeeper.port = 2181
+dubbo.registry.address=zookeeper://127.0.0.1:${embedded.zookeeper.port}
+dubbo.registry.file=${user.home}/dubbo-cache/${spring.application.name}/dubbo.cache
 ```
 
 
