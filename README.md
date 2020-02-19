@@ -138,7 +138,35 @@ TODO：
    dubbo.registry.address=N/A
    ```
 
-   
+
+建议在 Provider 端配置的 Provider 端属性有：
+
+```xml
+<dubbo:protocol threads="200" /> 
+<dubbo:service interface="com.alibaba.hello.api.HelloService" version="1.0.0" ref="helloService"
+    executes="200" >
+    <dubbo:method name="findAllPerson" executes="50" />
+</dubbo:service>
+```
+
+1. `threads`：服务线程池大小
+2. `executes`：一个服务提供者并行执行请求上限，即当 Provider 对一个服务的并发调用达到上限后，新调用会阻塞，此时 Consumer 可能会超时。在方法上配置 `dubbo:method` 则针对该方法进行并发限制，在接口上配置 `dubbo:service`，则针对该服务进行并发限制
+
+
+
+在 Provider 端尽量多配置 Consumer 端属性，原因如下：
+
+- 作服务的提供方，比服务消费方更清楚服务的性能参数，如调用的超时时间、合理的重试次数等
+- 在 Provider 端配置后，Consumer 端不配置则会使用 Provider 端的配置，即 Provider 端的配置可以作为 Consumer 的缺省值。否则，Consumer 会使用 Consumer 端的全局设置，这对于 Provider 是不可控的，并且往往是不合理的
+
+建议在 Provider 端配置的 Consumer 端属性有：
+
+1. `timeout`：方法调用的超时时间
+2. `retries`：失败重试次数，默认3次
+3. `loadbalance`：负载均衡算法，缺省是随机 `random`。还可以配置轮询 `roundrobin`、最不活跃优先`leastactive` 和一致性哈希 `consistenthash` 等
+4. `actives`：消费者端的最大并发调用限制，即当 Consumer 对一个服务的并发调用到上限后，新调用会阻塞直到超时，在方法上配置 `dubbo:method` 则针对该方法进行并发限制，在接口上配置 `dubbo:service`，则针对该服务进行并发限制
+
+
 
 ### [服务消费方](https://github.com/gaotingwang/springboot-dubbo-demo/tree/master/auto-configure-sample/auto-configure-consumer)
 
