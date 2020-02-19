@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>registry-zookeeper-sample</artifactId>
+        <groupId>com.gtw.dubbo.demo</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>registry-zookeeper-provider</artifactId>
+
+    <properties>
+        <rpc.api.version>1.0-SNAPSHOT</rpc.api.version>
+    </properties>
+
+    <dependencies>
+        <!-- rpc api dependency -->
+        <dependency>
+            <groupId>com.gtw.dubbo</groupId>
+            <artifactId>rpc-api</artifactId>
+            <version>${rpc.api.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
