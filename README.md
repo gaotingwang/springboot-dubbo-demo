@@ -177,7 +177,9 @@ TODO：
    @Slf4j
    public class ConsumerApplication {
    
-       @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:20880")
+     	// 服务启动过程中验证服务提供者的可用性
+     	// 防止A -> B，B -> A 情况，服务无法启动，check=false关闭启动检查
+       @Reference(version = "1.0.0", url = "dubbo://127.0.0.1:20880", check = false)
        private DemoService demoService;
    
        public static void main(String[] args) {
@@ -188,9 +190,9 @@ TODO：
        public ApplicationRunner runner() {
            return args -> log.info(demoService.sayHello("gtw"));
        }
-   }
+}
    ```
-
+   
    
 
 ## 外部化配置
@@ -324,6 +326,8 @@ dubbo.registry.file=${user.home}/dubbo-cache/${spring.application.name}/dubbo.ca
 
 ## 健康检查
 
+
+
 ### Integrate with Maven
 
 ```XML
@@ -339,6 +343,8 @@ dubbo.registry.file=${user.home}/dubbo-cache/${spring.application.name}/dubbo.ca
 </dependency>
 ```
 
+
+
 ### Health Checks Enabled
 
 `management.health.dubbo.enabled` is a enabled configuration to turn on or off health checks feature, its' default is `true`.
@@ -348,6 +354,8 @@ If you'd like to disable health checks , you chould apply `management.health.dub
 ```
 management.health.dubbo.enabled = false
 ```
+
+
 
 ### Endpoints Enabled
 
@@ -364,6 +372,8 @@ management.endpoint.dubboreferences.enabled = true
 management.endpoint.dubboproperties.enabled = true
 ```
 
+
+
 ### Endpoints
 
 Actuator endpoint `dubbo` supports Actuator Endpoints :
@@ -376,3 +386,8 @@ Actuator endpoint `dubbo` supports Actuator Endpoints :
 | `dubboreferences` | `false` | `/actuator/dubbo/references` | `GET`       | Exposes all Dubbo's `ReferenceBean` |
 | `dubboconfigs`    | `true`  | `/actuator/dubbo/configs`    | `GET`       | Exposes all Dubbo's `*Config`       |
 | `dubboshutdown`   | `false` | `/actuator/dubbo/shutdown`   | `POST`      | Shutdown Dubbo services             |
+
+
+
+
+

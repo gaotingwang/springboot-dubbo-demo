@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ConsumerController {
 
-    @Reference(version = "${demo.service.version}")
+    @Reference(version = "${demo.service.version}", check = false)
     private DemoService demoService;
 
     @GetMapping(value = "/say-hello")
