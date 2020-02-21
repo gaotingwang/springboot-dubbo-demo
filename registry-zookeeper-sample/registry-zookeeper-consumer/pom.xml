@@ -14,6 +14,7 @@
     <properties>
         <rpc.api.version>1.0-SNAPSHOT</rpc.api.version>
         <dubbo.version>2.7.5</dubbo.version>
+        <dubbo.actuator.version>2.7.5</dubbo.actuator.version>
     </properties>
 
     <dependencies>
@@ -36,6 +37,17 @@
                     <artifactId>slf4j-log4j12</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-actuator</artifactId>
+            <version>${dubbo.actuator.version}</version>
         </dependency>
     </dependencies>
 

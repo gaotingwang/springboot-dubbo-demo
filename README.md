@@ -5,7 +5,7 @@ TODO：
 - [x] 自动装配
 - [x] 外部化配置
 - [x] Zookeeper 注册中心
-- [ ] 健康检查
+- [x] 健康检查
 - [ ] 服务监控
 
 
@@ -322,3 +322,57 @@ dubbo.registry.file=${user.home}/dubbo-cache/${spring.application.name}/dubbo.ca
 
 
 
+## 健康检查
+
+### Integrate with Maven
+
+```XML
+<!-- actuator -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.apache.dubbo</groupId>
+    <artifactId>dubbo-spring-boot-actuator</artifactId>
+    <version>2.7.5</version>
+</dependency>
+```
+
+### Health Checks Enabled
+
+`management.health.dubbo.enabled` is a enabled configuration to turn on or off health checks feature, its' default is `true`.
+
+If you'd like to disable health checks , you chould apply `management.health.dubbo.enabled` to be `false`:
+
+```
+management.health.dubbo.enabled = false
+```
+
+### Endpoints Enabled
+
+Dubbo Spring Boot providers actuator endpoints , however some of them are disable. If you'd like to enable them , please add following properties into externalized configuration :
+
+```
+# Enables Dubbo All Endpoints
+management.endpoints.web.exposure.include=*
+management.endpoint.dubbo.enabled = true
+management.endpoint.dubboshutdown.enabled = true
+management.endpoint.dubboconfigs.enabled = true
+management.endpoint.dubboservices.enabled = true
+management.endpoint.dubboreferences.enabled = true
+management.endpoint.dubboproperties.enabled = true
+```
+
+### Endpoints
+
+Actuator endpoint `dubbo` supports Actuator Endpoints :
+
+| ID                | Enabled | HTTP URI                     | HTTP Method | Description                         |
+| ----------------- | ------- | ---------------------------- | ----------- | ----------------------------------- |
+| `dubbo`           | `true`  | `/actuator/dubbo`            | `GET`       | Exposes Dubbo's meta data           |
+| `dubboproperties` | `true`  | `/actuator/dubbo/properties` | `GET`       | Exposes all Dubbo's Properties      |
+| `dubboservices`   | `false` | `/actuator/dubbo/services`   | `GET`       | Exposes all Dubbo's `ServiceBean`   |
+| `dubboreferences` | `false` | `/actuator/dubbo/references` | `GET`       | Exposes all Dubbo's `ReferenceBean` |
+| `dubboconfigs`    | `true`  | `/actuator/dubbo/configs`    | `GET`       | Exposes all Dubbo's `*Config`       |
+| `dubboshutdown`   | `false` | `/actuator/dubbo/shutdown`   | `POST`      | Shutdown Dubbo services             |
