@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
 @RestController
 public class ConsumerController {
 
-    @Reference(version = "${demo.service.version}", check = false, cache = "lru")
+    @Reference(version = "${demo.service.version}", check = false, cache = "lru", connections = 10)
     private DemoService demoService;
 
     @Reference(async = true, timeout = 10000)
