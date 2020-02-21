@@ -15,7 +15,8 @@ import java.util.concurrent.Future;
 @RestController
 public class ConsumerController {
 
-    @Reference(version = "${demo.service.version}", check = false, cache = "lru", connections = 10)
+    // 每客户端并发执行（或占用连接的请求数）不能超过 10 个
+    @Reference(version = "${demo.service.version}", check = false, cache = "lru", connections = 10, actives = 10)
     private DemoService demoService;
 
     @Reference(async = true, timeout = 10000)
