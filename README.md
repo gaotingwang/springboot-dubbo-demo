@@ -204,7 +204,7 @@ Dubbo 特性熟悉使用：
        public ApplicationRunner runner() {
            return args -> log.info(demoService.sayHello("gtw"));
        }
-}
+    }
    ```
    
 
