@@ -18,8 +18,10 @@ Dubbo 特性熟悉使用：
 - [x] [结果缓存](http://dubbo.apache.org/zh-cn/docs/user/demos/result-cache.html)
 - [x] [连接](http://dubbo.apache.org/zh-cn/docs/user/demos/config-connections.html)、[并发控制](http://dubbo.apache.org/zh-cn/docs/user/demos/concurrency-control.html)
 - [x] [令牌验证](http://dubbo.apache.org/zh-cn/docs/user/demos/token-authorization.html)
-- [x] 分组特性
-- [x] 版本控制
+- [x] [版本控制](http://dubbo.apache.org/zh-cn/docs/user/demos/multi-versions.html)
+- [x] [分组特性]()
+- [ ] 本地存根
+- [ ] 本地伪装
 - [ ] 限流熔断
 
 
