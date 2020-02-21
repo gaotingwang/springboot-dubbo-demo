@@ -10,6 +10,20 @@ TODO：
 
 
 
+Dubbo 特性熟悉使用：
+
+- [x] [启动检查](http://dubbo.apache.org/zh-cn/docs/user/demos/preflight-check.html)
+- [x] [负载均衡](http://dubbo.apache.org/zh-cn/docs/user/demos/loadbalance.html)
+- [x] [异步调用](https://github.com/gaotingwang/springboot-dubbo-demo/commit/47a49dcf5a9139de75bc2f00bb92bd3c5a6618d0)
+- [x] [结果缓存](http://dubbo.apache.org/zh-cn/docs/user/demos/result-cache.html)
+- [x] [连接](http://dubbo.apache.org/zh-cn/docs/user/demos/config-connections.html)、[并发控制](http://dubbo.apache.org/zh-cn/docs/user/demos/concurrency-control.html)
+- [x] [令牌验证](http://dubbo.apache.org/zh-cn/docs/user/demos/token-authorization.html)
+- [x] 分组特性
+- [x] 版本控制
+- [ ] 限流熔断
+
+
+
 ## Maven 依赖
 
 ```xml
@@ -193,7 +207,8 @@ TODO：
 }
    ```
    
-   
+
+
 
 ## 外部化配置
 
