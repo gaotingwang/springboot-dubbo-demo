@@ -14,6 +14,11 @@ public class DefaultDemoService implements DemoService {
     private String serviceName;
 
     public String sayHello(String name) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String s = String.format("[%s] : Hello, %s", serviceName, name);
         System.out.println(s);
         return s;
