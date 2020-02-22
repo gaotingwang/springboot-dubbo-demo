@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConsumerController {
 
     // 每客户端并发执行（或占用连接的请求数）不能超过 10 个
-    @Reference(version = "${demo.service.version}", check = false, cache = "lru", connections = 10, actives = 10)
+    @Reference(version = "${demo.service.version}", check = false,
+            cache = "lru", connections = 10, actives = 10, timeout = 10000)
     private DemoService demoService;
 
     @GetMapping(value = "/say-hello")

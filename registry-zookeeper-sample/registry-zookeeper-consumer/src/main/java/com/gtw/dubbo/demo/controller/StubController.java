@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class StubController {
 
     // 每客户端并发执行（或占用连接的请求数）不能超过 10 个
-    @Reference(version = "${demo.service.version}", cache = "lru",
+    @Reference(version = "${demo.service.version}", cache = "lru", timeout = 10000,
             stub = "com.gtw.dubbo.demo.stub.DemoServiceStub")
     private DemoService demoService;
 

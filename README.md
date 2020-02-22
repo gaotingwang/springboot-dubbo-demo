@@ -21,7 +21,7 @@ Dubbo 特性熟悉使用：
 - [x] [版本控制](http://dubbo.apache.org/zh-cn/docs/user/demos/multi-versions.html)
 - [x] [分组特性]()
 - [x] [本地存根](https://github.com/gaotingwang/springboot-dubbo-demo/commit/27f5068c0c5c1e0011671c1385cd570d2de4f369)
-- [ ] 本地伪装
+- [x] [本地伪装](https://github.com/gaotingwang/springboot-dubbo-demo/commit/8ff4bd271f73bda545d397433e7faa47554f5ec7)
 - [ ] 限流熔断
 
 
