@@ -20,7 +20,7 @@ Dubbo 特性熟悉使用：
 - [x] [令牌验证](http://dubbo.apache.org/zh-cn/docs/user/demos/token-authorization.html)
 - [x] [版本控制](http://dubbo.apache.org/zh-cn/docs/user/demos/multi-versions.html)
 - [x] [分组特性]()
-- [ ] 本地存根
+- [x] [本地存根](https://github.com/gaotingwang/springboot-dubbo-demo/commit/27f5068c0c5c1e0011671c1385cd570d2de4f369)
 - [ ] 本地伪装
 - [ ] 限流熔断
 
